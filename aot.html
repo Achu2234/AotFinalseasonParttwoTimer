@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aot Final Sesion part 2 Time Counter</title>
+    <link rel="stylesheet" href="css/time.css">
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .covor {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-51.5%, -80%);
+            width: 380px;
+            height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        span {
+            width: 80px;
+            height: 100px;
+            border: 3px grey solid;
+            margin: 7px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 60px;
+        }
+
+
+        .days::after {
+            content: "days";
+            font-size: 15px;
+            border: 3px grey solid;
+            min-width: 75px;
+            max-width: 75px;
+            min-height: 25px;
+            max-height: 25px;
+            position: absolute;
+            top: 60%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hours::after {
+            content: "hours";
+            font-size: 15px;
+            border: 3px grey solid;
+            min-width: 75px;
+            max-width: 75px;
+            min-height: 25px;
+            max-height: 25px;
+            position: absolute;
+            top: 60%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .minuts::after {
+            content: "minuts";
+            font-size: 15px;
+            border: 3px grey solid;
+            min-width: 75px;
+            max-width: 75px;
+            min-height: 25px;
+            max-height: 25px;
+            position: absolute;
+            top: 60%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+        .seconds::after {
+            content: "seconds";
+            font-size: 15px;
+            border: 3px grey solid;
+            min-width: 75px;
+            max-width: 75px;
+            min-height: 25px;
+            max-height: 25px;
+            position: absolute;
+            top: 60%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+
+        @media (min-width : 300px) and (max-width: 400px) {
+            .covor {
+                min-width: 280px;
+                min-height: 500px;
+            } 
+            span {
+                width: 50px;
+                height: 80px;
+                font-size: 30px;
+            }
+            .days::after {
+                content: "";
+                border: none;
+            }
+            .hours::after {
+                content: "";
+                border: none;
+            }
+            .minuts::after {
+                content: "";
+                border: none;
+            }
+            .seconds::after {
+                content: "";
+                border: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="covor">
+        <span class="days"></span>
+        <span class="hours"></span>
+        <span class="minuts"></span>
+        <span class="seconds"></span> 
+    </div>
+    <script>
+        let CountDownDate = new Date("Jan 8, 2022 23:59:59").getTime();
+
+        let counter = setInterval(function (){
+        
+
+        let countNow = setInterval(function (){
+            // get date now
+            let dateNow = new Date().getTime();
+            // get date def
+            let dateDiff = CountDownDate - dateNow;
+            // get days
+            let days = Math.floor(dateDiff / (1000 * 60 * 60 * 24));
+            // get hours
+            let hours = Math.floor(dateDiff % (1000 * 60 * 60 * 24) / (1000 * 60 * 60));
+            // get minuts 
+            let minuts = Math.floor(dateDiff % (1000 * 60 * 60) / (1000 * 60));
+            // get seconds 
+            let seconds = Math.floor(dateDiff % (1000 * 60) / (1000));
+
+
+
+            document.querySelector(".days").innerHTML = days < 10 ? `0${days}`: days;
+            document.querySelector(".hours").innerHTML = hours < 10 ? `0${hours}`: hours;
+            document.querySelector(".minuts").innerHTML = minuts < 10 ? `0${minuts}`: minuts;
+            document.querySelector(".seconds").innerHTML = seconds < 10 ? `0${seconds}`: seconds;
+        })
+
+        }, 1000)
+    </script>
+    <script src="js/time.js"></script>
+</body>
+</html>
